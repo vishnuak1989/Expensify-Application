@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run build:prod
+  C:\Program Files\nodejs\node.exe C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install --production
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python36\Scripts\;C:\Program Files\Python36\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Users\aleen\AppData\Local\Microsoft\WindowsApps;C:\Users\aleen\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python36\Scripts\;C:\Program Files\Python36\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Users\aleen\AppData\Local\Microsoft\WindowsApps;C:\Users\aleen\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\heroku\bin
 
 Yarn version: 
   1.5.1
@@ -20,12 +20,13 @@ npm manifest:
       "main": "index.js",
       "license": "MIT",
       "scripts": {
-          "serve": "live-server public/",
           "build:dev": "webpack --watch",
           "build:prod": "webpack -p --env production",
           "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
           "dev-server": "webpack-dev-server",
-          "test": "jest --config=jest.config.json --watchAll"
+          "test": "jest --config=jest.config.json --watchAll",
+          "start": "node server/server.js",
+          "heroku-postbuild": "yarn run build:prod"
       },
       "dependencies": {
           "babel": "^6.23.0",
@@ -38,13 +39,14 @@ npm manifest:
           "babel-preset-stage-2": "^6.24.1",
           "css-loader": "^0.28.11",
           "dev-server": "^0.0.2",
-          "enzyme": "^3.3.0",
+          "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+          "extract-text-webpack-plugin": "^4.0.0-beta.0",
+          "webpack-cli": "^2.1.4",
           "enzyme-adapter-react-16": "^1.1.1",
           "enzyme-to-json": "^3.3.4",
           "eslint": "^4.19.1",
+          "express": "^4.16.3",
           "geolocation": "^0.2.0",
-          "jest": "^22.4.4",
-          "live-server": "^1.2.0",
           "moment": "^2.22.1",
           "node-sass": "^4.9.0",
           "normalize.css": "^8.0.0",
@@ -57,20 +59,19 @@ npm manifest:
           "react-modal": "^3.4.4",
           "react-redux": "^5.0.7",
           "react-router-dom": "^4.2.2",
-          "react-test-renderer": "^16.3.2",
           "redux": "^3.7.2",
           "sass-loader": "^6.0.7",
           "style-loader": "^0.20.3",
           "uuid": "^3.2.1",
           "webpack": "^4.8.3",
-          "webpack-dev-server": "^3.1.4"
+  
       },
       "devDependencies": {
-          "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-          "babel-plugin-transform-class-properties": "^6.24.1",
           "babel-preset-stage-3": "^6.24.1",
-          "extract-text-webpack-plugin": "^4.0.0-beta.0",
-          "webpack-cli": "^2.1.4"
+          "enzyme": "^3.3.0",
+          "jest": "^22.4.4",
+          "react-test-renderer": "^16.3.2",
+          "webpack-dev-server": "^3.1.4",
       }
   }
 
@@ -3194,7 +3195,7 @@ Lockfile:
       jest-message-util "^22.4.3"
       jest-regex-util "^22.4.3"
   
-  express@^4.16.2:
+  express@^4.16.2, express@^4.16.3:
     version "4.16.3"
     resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
     dependencies:
@@ -9210,16 +9211,10 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 2
-  Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c webpack -p --env production
-  Directory: C:\Users\aleen\Desktop\reactProjects\expensify-app
-  Output:
-  
-      at ProcessTermError.MessageError (C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
-      at ChildProcess.emit (events.js:159:13)
-      at maybeClose (internal/child_process.js:943:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+  SyntaxError: C:\Users\aleen\Desktop\reactProjects\expensify-app\package.json: Unexpected token } in JSON at position 1803
+      at JSON.parse (<anonymous>)
+      at C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1036:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
+      at C:\Users\aleen\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:109:13
+      at <anonymous>
