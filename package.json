@@ -9,7 +9,9 @@
         "build:prod": "webpack -p --env production",
         "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
         "dev-server": "webpack-dev-server",
-        "test": "jest --config=jest.config.json --watchAll"
+        "test": "jest --config=jest.config.json --watchAll",
+        "start": "node server/server.js",
+        "heroku-postbuild": "yarn run build:prod"
     },
     "dependencies": {
         "babel": "^6.23.0",
@@ -26,6 +28,7 @@
         "enzyme-adapter-react-16": "^1.1.1",
         "enzyme-to-json": "^3.3.4",
         "eslint": "^4.19.1",
+        "express": "^4.16.3",
         "geolocation": "^0.2.0",
         "jest": "^22.4.4",
         "live-server": "^1.2.0",
