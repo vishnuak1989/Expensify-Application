@@ -1,3 +1,11 @@
+#Expensify Application
+React.js Application to track expenses.
+
+#Stack
+Webpack, Babel, React.js, Redux
+#Styling
+CSS,SASS
+
 # Git commands
 
 git init - create a new repository
