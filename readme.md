@@ -1,12 +1,13 @@
-#Expensify Application
+# Expensify Application
 React.js Application to track expenses.
 
-#Stack
+# Stack
 Webpack, Babel, React.js, Redux
-#Styling
+# Styling
 CSS,SASS
 
-# Git commands
+
+Git commands
 
 git init - create a new repository
 git status - view change in file
